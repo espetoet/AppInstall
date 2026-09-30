@@ -1,3 +1,10 @@
+---
+
+<p align="center">
+  <img src="AppInstall.png" alt="AppInstall" width="660">
+</p>
+
+---
 # AppInstall
 
 **AppInstall** é um gerenciador gráfico de instalação e atualização de programas para Windows, desenvolvido em **C# / WPF / .NET 8** e baseado no **Windows Package Manager (WinGet)**.
