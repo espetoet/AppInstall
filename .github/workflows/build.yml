@@ -2,9 +2,14 @@ name: Compilar AppInstall
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Tag da Release (ex.: v1.0-build-44). Deixe vazio para apenas compilar."
+        required: false
+        type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -45,9 +50,22 @@ jobs:
           }
           Get-Item "publish\AppInstall.exe" | Format-List Name,Length,LastWriteTime
 
-      - name: Disponibilizar AppInstall.exe
+      - name: Disponibilizar como Artifact
         uses: actions/upload-artifact@v4
         with:
           name: AppInstall-win-x64
           path: publish/AppInstall.exe
           if-no-files-found: error
+
+      - name: Criar GitHub Release
+        if: ${{ inputs.release_tag != '' }}
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          gh release create "$env:RELEASE_TAG" "publish\AppInstall.exe#AppInstall.exe" `
+            --repo "${{ github.repository }}" `
+            --target "${{ github.sha }}" `
+            --title "AppInstall $env:RELEASE_TAG" `
+            --generate-notes
