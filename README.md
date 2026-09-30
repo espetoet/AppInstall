@@ -405,6 +405,6 @@ O comportamento final de download e instalação também depende do pacote selec
 
 ## Aviso
 
-AppInstall é um projeto independente e não é afiliado, patrocinado ou mantido pela Microsoft, pelo projeto WinGet, pela Ninite ou pelos fabricantes dos programas instalados.
+AppInstall é um projeto independente e não é afiliado, patrocinado ou mantido pela Microsoft, pelo projeto WinGet, ou pelos fabricantes dos programas instalados.
 
 Windows, WinGet e Microsoft são marcas de seus respectivos proprietários.
