@@ -1,0 +1,53 @@
+name: Compilar AppInstall
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: AppInstall win-x64
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore Instalador.csproj
+
+      - name: Publicar AppInstall
+        run: >
+          dotnet publish Instalador.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:EnableCompressionInSingleFile=true
+          -p:DebugType=none
+          -p:DebugSymbols=false
+          -o publish
+
+      - name: Conferir arquivo gerado
+        shell: pwsh
+        run: |
+          if (!(Test-Path "publish\AppInstall.exe")) {
+            Write-Error "AppInstall.exe nao foi encontrado na pasta publish."
+            exit 1
+          }
+          Get-Item "publish\AppInstall.exe" | Format-List Name,Length,LastWriteTime
+
+      - name: Disponibilizar AppInstall.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: AppInstall-win-x64
+          path: publish/AppInstall.exe
+          if-no-files-found: error
