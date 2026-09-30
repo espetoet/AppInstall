@@ -1,0 +1,47 @@
+<Window x:Class="WingetInstaller.AppDialog"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Width="280" MinHeight="96" MaxHeight="220"
+ SizeToContent="Height"
+ WindowStartupLocation="CenterOwner"
+ WindowStyle="None" ResizeMode="NoResize"
+ AllowsTransparency="True" Background="Transparent"
+ ShowInTaskbar="False" FontFamily="Segoe UI" Foreground="#F4F7FB">
+ <Border Background="#0C1118" BorderBrush="#2A3A4D" BorderThickness="1.2" CornerRadius="9">
+  <Grid Margin="12,6,12,8">
+   <Grid.RowDefinitions>
+    <RowDefinition Height="21"/>
+    <RowDefinition Height="Auto"/>
+    <RowDefinition Height="30"/>
+   </Grid.RowDefinitions>
+   <Grid MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+    <TextBlock Text="AppInstall" FontSize="11.5" FontWeight="SemiBold"
+               VerticalAlignment="Center"/>
+   </Grid>
+   <TextBlock x:Name="MessageText" Grid.Row="1"
+              TextWrapping="Wrap"
+              FontSize="11"
+              Foreground="#D8E3F0"
+              Margin="0,7,0,8"
+              MaxWidth="248"
+              LineHeight="15"
+              VerticalAlignment="Center"/>
+   <Button Grid.Row="2" Content="OK" Width="58" Height="25"
+           HorizontalAlignment="Right" VerticalAlignment="Bottom"
+           IsDefault="True" IsCancel="True"
+           Background="#117FF5" Foreground="White" BorderThickness="0"
+           FontWeight="SemiBold" Cursor="Hand" Click="Ok_Click">
+    <Button.Template>
+     <ControlTemplate TargetType="Button">
+      <Border x:Name="B" Background="{TemplateBinding Background}" CornerRadius="8">
+       <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Border>
+      <ControlTemplate.Triggers>
+       <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="B" Property="Opacity" Value=".88"/></Trigger>
+      </ControlTemplate.Triggers>
+     </ControlTemplate>
+    </Button.Template>
+   </Button>
+  </Grid>
+ </Border>
+</Window>

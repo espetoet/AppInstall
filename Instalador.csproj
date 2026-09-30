@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>AppInstall</AssemblyName>
+    <Version>1.0.0-build.45</Version>
+    <AssemblyVersion>1.0.0.45</AssemblyVersion>
+    <FileVersion>1.0.0.45</FileVersion>
+    <InformationalVersion>1.0 build 45</InformationalVersion>
+    <Product>AppInstall</Product>
+    <Company>PHVR</Company>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>appinstall.ico</ApplicationIcon>
+      <PublishSingleFile>true</PublishSingleFile>
+      <SelfContained>true</SelfContained>
+      <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+      <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+      <DebugType>none</DebugType>
+      <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="appinstall.ico" />
+    <Resource Include="appinstall-icon.png" />
+  </ItemGroup>
+</Project>
